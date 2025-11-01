@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu | BAKARINA</title>
+
+  <!-- Bootstrap & Font -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fffdf8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, #1e5128, #2e693a);
+    }
+
+    .navbar-brand {
+      font-weight: 700;
+      color: #f7d36f !important;
+      letter-spacing: 1px;
+    }
+
+    .navbar-nav .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    .navbar-nav .nav-link:hover, .nav-link.active {
+      color: #f7d36f !important;
+    }
+
+    .form-control {
+      border-radius: 20px;
+      padding-left: 15px;
+    }
+
+    .cart-icon {
+      color: white;
+      font-size: 1.5rem;
+      position: relative;
+      margin-left: 20px;
+      text-decoration: none;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -6px;
+      right: -10px;
+      background-color: #f7d36f;
+      color: #1e5128;
+      font-size: 0.75rem;
+      font-weight: bold;
+      border-radius: 50%;
+      padding: 2px 6px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 3rem 0 2rem;
+      color: #1e5128;
+      font-weight: 700;
+    }
+
+    /* Card Menu */
+    .card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-color: #fff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-body h5 {
+      color: #1e5128;
+      font-weight: 600;
+    }
+
+    .card-body p {
+      color: #555;
+      flex-grow: 1;
+    }
+
+    .price {
+      color: #2e693a;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .btn-buy {
+      background-color: #2e693a;
+      color: white;
+      border-radius: 25px;
+      padding: 0.5rem 1.2rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .btn-buy:hover {
+      background-color: #f7d36f;
+      color: #1d4620;
+    }
+
+    #no-result {
+      text-align: center;
+      color: #888;
+      font-style: italic;
+      margin-top: 2rem;
+      display: none;
+    }
+
+    footer {
+      background-color: #1e5128;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+
+    .row.g-4 > [class*="col-"] {
+      display: flex;
+    }
+
+    /* ===== Animasi Fade In ===== */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+      animation: fadeIn 0.8s ease forwards;
+    }
+  </style>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B0HYLBGMFS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-B0HYLBGMFS');
+</script>
+
+</head>
+
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <div class="container d-flex justify-content-between align-items-center">
+    <a class="navbar-brand" href="index.html">BAKARINA</a>
+    <div class="d-flex align-items-center">
+      <a href="checkout.html" class="cart-icon">
+        <i class="bi bi-cart-fill"></i>
+        <span class="cart-badge" id="cartCount">0</span>
+      </a>
+      <button class="navbar-toggler ms-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-4">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="menu.html">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="promo.html">Promo</a></li>
+        <li class="nav-item"><a class="nav-link" href="kontak.html">Kontak</a></li>
+      </ul>
+      <form class="d-flex ms-auto" role="search">
+        <input id="searchInput" class="form-control me-2" type="search" placeholder="Cari Nasi Bakar..." />
+      </form>
+    </div>
+  </div>
+</nav>
+
+  <h1>Semua Menu Di BAKARINA</h1>
+
+  <div class="container">
+    <div class="row g-4" id="menuList">
+
+      <!-- Semua produk -->
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/nasbak1.jpg" alt="Nasi Bakar Ayam Woku">
+          <div class="card-body text-center">
+            <h5>Nasi Bakar Ayam Woku</h5>
+            <p>Ayam berbumbu khas Manado yang dibungkus daun pisang dan dibakar harum.</p>
+            <div class="price">Rp25.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/nasbak2.jpg" alt="Nasi Bakar Cumi Pedas">
+          <div class="card-body text-center">
+            <h5>Nasi Bakar Cumi Pedas</h5>
+            <p>Cumi segar berpadu sambal rempah laut pedas yang menggugah selera.</p>
+            <div class="price">Rp27.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/nasbak3.jpg" alt="Nasi Bakar Tongkol Suwir">
+          <div class="card-body text-center">
+            <h5>Nasi Bakar Tongkol Suwir</h5>
+            <p>Menggunakan nasi kerabu dengan isi tongkol suwir pedas gurih khas BAKARINA.</p>
+            <div class="price">Rp23.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/nasbak4.jpg" alt="Nasi Bakar Ayam Kemangi">
+          <div class="card-body text-center">
+            <h5>Nasi Bakar Ayam Kemangi</h5>
+            <p>Aroma kemangi segar dan ayam bumbu santan yang kaya rasa.</p>
+            <div class="price">Rp24.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/nasbak5.jpg" alt="Nasi Bakar Teri Medan">
+          <div class="card-body text-center">
+            <h5>Nasi Bakar Teri Medan</h5>
+            <p>Gurihnya nasi bakar isi teri medan pedas yang bikin nagih.</p>
+            <div class="price">Rp22.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/nasbak6.jpg" alt="Nasi Bakar Sapi Lada Hitam">
+          <div class="card-body text-center">
+            <h5>Nasi Bakar Sapi Lada Hitam</h5>
+            <p>Daging sapi empuk dengan bumbu lada hitam dalam balutan nasi wangi.</p>
+            <div class="price">Rp28.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/nasbak7.jpg" alt="Nasi Bakar Ayam Rica-Rica">
+          <div class="card-body text-center">
+            <h5>Nasi Bakar Ayam Rica-Rica</h5>
+            <p>Pedas nikmat khas Manado dengan ayam rica yang menggoda selera.</p>
+            <div class="price">Rp25.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/nasbak8.jpg" alt="Nasi Bakar Udang Balado">
+          <div class="card-body text-center">
+            <h5>Nasi Bakar Udang Balado</h5>
+            <p>Udang segar balado pedas manis dibakar dalam daun pisang harum.</p>
+            <div class="price">Rp26.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/brownies.jpg" alt="Brownies Coklat Lumer">
+          <div class="card-body text-center">
+            <h5>Brownies Coklat Lumer</h5>
+            <p>Dessert lembut dengan coklat premium, teman manis setelah nasi bakar.</p>
+            <div class="price">Rp15.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 fade-in">
+        <div class="card">
+          <img src="images/kripikpisang.jpg" alt="Kripik Pisang Coklat">
+          <div class="card-body text-center">
+            <h5>Kripik Pisang Coklat</h5>
+            <p>Camilan renyah manis dengan balutan coklat lezat khas BAKARINA.</p>
+            <div class="price">Rp10.000</div>
+            <button class="btn btn-buy">Tambahkan ke Keranjang</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p id="no-result">Menu tidak ditemukan 😢</p>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 BAKARINA. Semua hak cipta dilindungi.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".card");
+    const noResult = document.getElementById("no-result");
+    const cartCount = document.getElementById("cartCount");
+
+    function updateCartBadge() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cartCount.textContent = cart.length;
+    }
+
+    document.querySelectorAll(".btn-buy").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const card = e.target.closest(".card");
+        const name = card.querySelector("h5").textContent;
+        const price = card.querySelector(".price").textContent;
+        const img = card.querySelector("img").getAttribute("src");
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push({ name, price, img });
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        updateCartBadge();
+      });
+    });
+
+    searchInput.addEventListener("keyup", () => {
+      const searchText = searchInput.value.toLowerCase();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const title = card.querySelector("h5").textContent.toLowerCase();
+        if (title.includes(searchText)) {
+          card.parentElement.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.parentElement.style.display = "none";
+        }
+      });
+
+      noResult.style.display = visibleCount === 0 ? "block" : "none";
+    });
+
+    updateCartBadge();
+
+    // === Animasi Fade In Saat Scroll ===
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.1 };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+</body>
+</html>
